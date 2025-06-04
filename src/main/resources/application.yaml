@@ -9,3 +9,8 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 
+
+jwt:
+  secret: mySecretKey123456789012345678901234567890  # 至少32字符
+  expiration: 86400  # Token 過期時間（秒），86400 = 24小時
+

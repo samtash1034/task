@@ -11,6 +11,8 @@ public class User {
 
     private String password; // 屬性
 
+    private String role;
+
     // --- Getter 和 Setter 方法 ---
 
     // 方法
@@ -44,6 +46,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 

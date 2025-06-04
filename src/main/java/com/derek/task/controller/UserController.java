@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserController { // 入口
+public class UserController extends BaseController{ // 入口
 
     // 注入 userMapper 物件
     @Autowired
@@ -45,13 +45,6 @@ public class UserController { // 入口
     public ResponseEntity<?> createUser(@RequestBody User user) {
         // map 集合
         Map<String, Object> response = new HashMap<>();
-
-        // System.out.println => 輸出內容在 console
-        // 類.方法名() => 使用某個類的方法
-        System.out.println(user.getId());
-        System.out.println(user.getName());
-        System.out.println(user.getAccount());
-        System.out.println(user.getPassword());
 
         // 插入使用者到資料庫
         userMapper.insert(user);

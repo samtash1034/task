@@ -12,7 +12,8 @@
         SELECT id,
                name,
                account,
-               password
+               password,
+               role
         FROM user
     </select>
 
@@ -20,7 +21,8 @@
         SELECT id,
                name,
                account,
-               password
+               password,
+               role
         FROM user
         WHERE account = #{account}
         AND id != #{id}
@@ -33,8 +35,8 @@
       useGeneratedKeys：是否開啟自動增長id，true（有)
     -->
     <insert id="insert" parameterType="com.derek.task.entity.User" useGeneratedKeys="true">
-        INSERT INTO user (name, account, password)
-        VALUES (#{name}, #{account}, #{password});
+        INSERT INTO user (name, account, password, role)
+        VALUES (#{name}, #{account}, #{password}, #{role});
     </insert>
 
     <!--編輯使用者-->
@@ -42,7 +44,8 @@
         UPDATE user
         SET name = #{name},
             account = #{account},
-            password = #{password}
+            password = #{password},
+            role = #{role}
         WHERE id = #{id};
     </update>
 
@@ -50,7 +53,8 @@
         SELECT id,
                name,
                account,
-               password
+               password,
+               role
         FROM user
         WHERE account = #{account}
     </select>

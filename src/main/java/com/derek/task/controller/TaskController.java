@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/task")
-public class TaskController {
+public class TaskController extends BaseController{
 
     @Autowired
     private TaskMapper taskMapper;

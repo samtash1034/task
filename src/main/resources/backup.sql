@@ -24,3 +24,7 @@ INSERT INTO user (name, account, password) VALUES
 ('小安', 'xiaoan', 'an_secure123'),
 ('小華', 'xiaohua', 'hU@huapwd'),
 ('阿信', 'axin', 'ax1nPwd!');
+
+
+ALTER TABLE user ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'STUDENT';
+
