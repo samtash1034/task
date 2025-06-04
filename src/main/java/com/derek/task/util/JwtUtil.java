@@ -2,7 +2,6 @@ package com.derek.task.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Slf4j
 @Component
 public class JwtUtil {
 
@@ -81,19 +79,14 @@ public class JwtUtil {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
-            log.error("Token 已過期: {}", e.getMessage());
             throw new RuntimeException("Token 已過期");
         } catch (UnsupportedJwtException e) {
-            log.error("不支援的 Token: {}", e.getMessage());
             throw new RuntimeException("不支援的 Token");
         } catch (MalformedJwtException e) {
-            log.error("Token 格式錯誤: {}", e.getMessage());
             throw new RuntimeException("Token 格式錯誤");
         } catch (SecurityException e) {
-            log.error("Token 簽名錯誤: {}", e.getMessage());
             throw new RuntimeException("Token 簽名錯誤");
         } catch (IllegalArgumentException e) {
-            log.error("Token 參數錯誤: {}", e.getMessage());
             throw new RuntimeException("Token 參數錯誤");
         }
     }
@@ -117,7 +110,6 @@ public class JwtUtil {
         try {
             return !isTokenExpired(token);
         } catch (Exception e) {
-            log.error("Token 驗證失敗: {}", e.getMessage());
             return false;
         }
     }

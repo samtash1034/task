@@ -39,8 +39,6 @@ public class ApiAspect {
         HttpServletRequest request = attributes.getRequest();
         String path = request.getRequestURI();
 
-        log.info("[API] Path: {}, Method = {}", path, pjp.getSignature().getName());
-
         BaseController controller = (BaseController) pjp.getTarget();
 
         // 如果是 AuthController，直接放行（登入、註冊等不需要驗證的接口）
@@ -51,21 +49,18 @@ public class ApiAspect {
         // 從請求頭中獲取 Authorization
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            log.warn("缺少 Authorization 頭或格式錯誤，Path: {}", path);
             return createErrorResponse("請提供有效的認證令牌", 401);
         }
 
         // 提取 Token
         String token = jwtUtil.extractTokenFromHeader(authHeader);
         if (token == null) {
-            log.warn("Token 為空，Path: {}", path);
             return createErrorResponse("認證令牌格式錯誤", 401);
         }
 
         try {
             // 驗證 Token 是否有效
             if (!jwtUtil.validateToken(token)) {
-                log.warn("Token 無效或已過期，Path: {}", path);
                 return createErrorResponse("認證令牌無效或已過期", 401);
             }
 
@@ -74,7 +69,6 @@ public class ApiAspect {
             String role = jwtUtil.getRoleFromToken(token);
 
             if (userId == null) {
-                log.warn("無法從 Token 中獲取用戶 ID，Path: {}", path);
                 return createErrorResponse("無效的用戶信息", 401);
             }
 
@@ -82,10 +76,7 @@ public class ApiAspect {
             controller.setUserId(userId);
             controller.setRole(role);
 
-            log.debug("用戶驗證成功 - UserId: {}, Role: {}, Path: {}", userId, role, path);
-
         } catch (RuntimeException e) {
-            log.error("Token 解析失敗: {}, Path: {}", e.getMessage(), path);
             return createErrorResponse("認證失敗，請重新登入", 401);
         }
 

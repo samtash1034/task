@@ -25,6 +25,19 @@ INSERT INTO user (name, account, password) VALUES
 ('小華', 'xiaohua', 'hU@huapwd'),
 ('阿信', 'axin', 'ax1nPwd!');
 
+INSERT INTO task (task_name, status, due_date, user_id) VALUES
+('撰寫專案規劃書', 0, '2025-06-15', 1),
+('設計資料庫結構', 1, '2025-06-10', 2),
+('開發後端API', 1, '2025-06-20', 1),
+('前端頁面製作', 0, '2025-06-25', 3),
+('撰寫測試案例', 2, '2025-06-12', 2),
+('系統整合測試', 0, '2025-07-01', 3),
+('修正BUG', 1, '2025-06-18', 1),
+('撰寫使用手冊', 0, '2025-07-05', 2),
+('部署到測試環境', 3, '2025-06-22', 3),
+('準備專案發表', 0, '2025-07-10', 1);
+
+
 
 ALTER TABLE user ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'STUDENT';
 

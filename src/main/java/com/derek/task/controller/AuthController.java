@@ -53,9 +53,6 @@ public class AuthController extends BaseController {
         response.put("code", 200);
         response.put("result", result);
 
-        log.info("用戶登入成功 - ID: {}, Account: {}, Role: {}",
-                user.getId(), user.getAccount(), user.getRole());
-
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
