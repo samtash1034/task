@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.derek.task.mapper.UserMapper">
+
+    <!--
+    id:方法名
+    resultType:回傳物件(user物件)，還要去指定明確的路徑
+    -->
+    <select id="selectAll" resultType="com.derek.task.entity.User">
+        SELECT id,
+               name,
+               account,
+               password
+        FROM user
+    </select>
+
+    <select id="selectByAccountAndIdNot" resultType="com.derek.task.entity.User">
+        SELECT id,
+               name,
+               account,
+               password
+        FROM user
+        WHERE account = #{account}
+        AND id != #{id}
+    </select>
+
+    <!--
+      inset:新增
+      id：方法名
+      parameterType:傳入參數
+      useGeneratedKeys：是否開啟自動增長id，true（有)
+    -->
+    <insert id="insert" parameterType="com.derek.task.entity.User" useGeneratedKeys="true">
+        INSERT INTO user (name, account, password)
+        VALUES (#{name}, #{account}, #{password});
+    </insert>
+
+    <!--編輯使用者-->
+    <update id="update" parameterType="com.derek.task.entity.User">
+        UPDATE user
+        SET name = #{name},
+            account = #{account},
+            password = #{password}
+        WHERE id = #{id};
+    </update>
+
+    <select id="selectByAccount" resultType="com.derek.task.entity.User">
+        SELECT id,
+               name,
+               account,
+               password
+        FROM user
+        WHERE account = #{account}
+    </select>
+
+
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM user
+        WHERE id = #{id};
+    </delete>
+
+
+</mapper>

@@ -1,34 +1,26 @@
-package com.project.task.entity;
+package com.derek.task.entity;
 
-import jakarta.persistence.*;
-import lombok.Data;
 
 import java.time.LocalDate;
 
-@Data
-@Entity
-@Table(name = "task")
 public class Task {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; // 屬性
 
-    @Column(name = "task_name")
     private String taskName;
 
-    @Column(name = "status")
     private Integer status = 0;
 
-    @Column(name = "due_date")
     private LocalDate dueDate;
 
+    private Integer userId;
 
     // --- Getter 和 Setter 方法 ---
 
+    // Integer：回傳的資料類型
     public Integer getId() {
         return id;
-    }
+    } // 方法
 
     public void setId(Integer id) {
         this.id = id;
@@ -56,5 +48,13 @@ public class Task {
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

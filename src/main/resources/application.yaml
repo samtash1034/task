@@ -5,3 +5,7 @@ spring:
     password: 12345678
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+# MyBatis 在啟動時會去 classpath 路徑底下的 mapper 資料夾中，載入所有 .xml 結尾的 Mapper 檔案
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+

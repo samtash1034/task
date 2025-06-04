@@ -1,26 +1,19 @@
-package com.project.task.entity;
+package com.derek.task.entity;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "user")
+// 一個類 = 物件
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; // 屬性
 
-    @Column(name = "name")
-    private String name;
+    private String name; // 屬性
 
-    @Column(name = "account")
-    private String account;
+    private String account; // 屬性
 
-    @Column(name = "password")
-    private String password;
+    private String password; // 屬性
 
     // --- Getter 和 Setter 方法 ---
 
+    // 方法
     public Integer getId() {
         return id;
     }
