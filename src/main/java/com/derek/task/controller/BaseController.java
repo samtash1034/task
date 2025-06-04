@@ -2,15 +2,15 @@ package com.derek.task.controller;
 
 public class BaseController {
 
-    protected String userId;
+    protected Integer userId;
 
     protected String role;
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

@@ -50,9 +50,9 @@ public class JwtUtil {
     /**
      * 從 Token 中獲取用戶 ID
      */
-    public Long getUserIdFromToken(String token) {
+    public Integer getUserIdFromToken(String token) {
         Claims claims = getClaimsFromToken(token);
-        return claims.get("userId", Long.class);
+        return claims.get("userId", Integer.class);
     }
 
     /**
@@ -61,13 +61,6 @@ public class JwtUtil {
     public String getRoleFromToken(String token) {
         Claims claims = getClaimsFromToken(token);
         return claims.get("role", String.class);
-    }
-
-    /**
-     * 從 Token 中獲取用戶名（Subject）
-     */
-    public String getUsernameFromToken(String token) {
-        return getClaimsFromToken(token).getSubject();
     }
 
     /**

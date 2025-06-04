@@ -4,12 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.derek.task.mapper.TaskMapper">
 
-    <select id="selectAll" resultType="com.derek.task.entity.Task">
-        SELECT id,
-               task_name AS taskName,
-               status,
-               due_date AS dueDate
-        FROM task
+    <select id="selectAll" resultType="com.derek.task.response.TaskResponse">
+        SELECT t.id,
+               t.task_name AS taskName,
+               t.status,
+               t.due_date AS dueDate,
+               u.name AS userName
+        FROM task t
+        LEFT JOIN user u ON t.user_id = u.id
     </select>
 
     <insert id="insert" parameterType="com.derek.task.entity.Task" useGeneratedKeys="true" keyProperty="id">
@@ -30,5 +32,16 @@
         DELETE FROM task
         WHERE id = #{id};
     </delete>
+
+    <select id="selectByUserId" resultType="com.derek.task.response.TaskResponse">
+        SELECT t.id,
+               t.task_name AS taskName,
+               t.status,
+               t.due_date AS dueDate,
+               u.name AS userName
+        FROM task t
+        LEFT JOIN user u ON t.user_id = u.id
+        WHERE t.user_id = #{userId}
+    </select>
 
 </mapper>

@@ -70,7 +70,7 @@ public class ApiAspect {
             }
 
             // 從 Token 中解析用戶信息
-            Long userId = jwtUtil.getUserIdFromToken(token);
+            Integer userId = jwtUtil.getUserIdFromToken(token);
             String role = jwtUtil.getRoleFromToken(token);
 
             if (userId == null) {
@@ -79,7 +79,7 @@ public class ApiAspect {
             }
 
             // 設置用戶信息到 Controller
-            controller.setUserId(String.valueOf(userId));
+            controller.setUserId(userId);
             controller.setRole(role);
 
             log.debug("用戶驗證成功 - UserId: {}, Role: {}, Path: {}", userId, role, path);
