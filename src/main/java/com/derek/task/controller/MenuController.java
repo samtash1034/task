@@ -19,8 +19,8 @@ public class MenuController extends BaseController {
     public ResponseEntity<?> getMenus() {
         List<Map<String, Object>> menus = new ArrayList<>();
 
+        // 如果角色是學生 => 菜單：用戶管理 + 任務管理
         if(Objects.equals(role, "TEACHER")) {
-            // 老師菜單：用戶管理 + 任務管理
             Map<String, Object> userMenu = new HashMap<>();
             userMenu.put("id", "user");
             userMenu.put("name", "用戶管理");
@@ -37,8 +37,8 @@ public class MenuController extends BaseController {
             menus.add(taskMenu);
         }
 
+        // 如果角色是學生 => 菜單：任務管理
         if(Objects.equals(role, "STUDENT")) {
-            // 學生菜單：只有任務管理
             Map<String, Object> taskMenu = new HashMap<>();
             taskMenu.put("id", "task");
             taskMenu.put("name", "任務管理");

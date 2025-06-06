@@ -21,9 +21,13 @@ public class TaskController extends BaseController {
     @GetMapping
     public ResponseEntity<?> getAllTasks() {
         List<TaskResponse> tasks = new ArrayList<>();
+
+        // 如果角色是老師 => 查詢全部的任務
         if(Objects.equals(role, "TEACHER")) {
             tasks = taskMapper.selectAll();
         }
+
+        // 如果角色是學生 => 查詢學生自己的任務（看不到其他人的）
         if(Objects.equals(role, "STUDENT")) {
             tasks = taskMapper.selectByUserId(userId);
         }

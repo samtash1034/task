@@ -59,6 +59,16 @@
         WHERE account = #{account}
     </select>
 
+    <select id="selectById" resultType="com.derek.task.entity.User">
+        SELECT id,
+               name,
+               account,
+               password,
+               role
+        FROM user
+        WHERE id = #{id}
+    </select>
+
 
     <delete id="deleteById" parameterType="int">
         DELETE FROM user

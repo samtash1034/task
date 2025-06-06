@@ -29,15 +29,17 @@ public class AuthController extends BaseController {
         Map<String, Object> response = new HashMap<>();
         Map<String, Object> result = new HashMap<>();
 
-        String account = request.getAccount();
-        User user = userMapper.selectByAccount(account);
+        // 根據帳號查詢試用者
+        User user = userMapper.selectByAccount(request.getAccount());
 
+        // 驗證帳號是否存在
         if (user == null) {
             response.put("message", "帳號不存在");
             response.put("code", 400);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
+        // 驗證密碼是否正確
         String password = request.getPassword();
         if (!password.equals(user.getPassword())) {
             response.put("message", "密碼錯誤");

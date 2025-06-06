@@ -70,8 +70,11 @@ public class UserController extends BaseController{ // 入口
             response.put("code", 400);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        if(StringUtil.isNullOrEmpty(user.getPassword())) {
-            response.put("message", "請輸入密碼");
+
+        // 驗證 id 是否存在
+        User userById = userMapper.selectById(user.getId());
+        if(userById == null) {
+            response.put("message", "id不存在");
             response.put("code", 400);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
@@ -82,6 +85,11 @@ public class UserController extends BaseController{ // 入口
             response.put("message", "帳號已存在");
             response.put("code", 400);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        // 如果密碼為空，則沿用舊密碼
+        if(StringUtil.isNullOrEmpty(user.getPassword())) {
+            user.setPassword(userById.getPassword());
         }
 
         // 編輯帳號

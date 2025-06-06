@@ -18,4 +18,6 @@ public interface TaskMapper {
     void deleteById(Integer id);
 
     List<TaskResponse> selectByUserId(Integer userId);
+
+    List<Task> selectById(Integer id);
 }

@@ -39,4 +39,6 @@ public interface UserMapper {
      * 透過帳號查詢使用者
      */
     User selectByAccount(String account);
+
+    User selectById(Integer id);
 }
