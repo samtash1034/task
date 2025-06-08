@@ -46,6 +46,14 @@ public class MenuController extends BaseController {
             taskMenu.put("icon", "task");
 
             menus.add(taskMenu);
+
+            Map<String, Object> timeSchedule = new HashMap<>();
+            timeSchedule.put("id", "timeSchedule");
+            timeSchedule.put("name", "時間規劃表");
+            timeSchedule.put("path", "/timeSchedule");
+            timeSchedule.put("icon", "timeSchedule");
+
+            menus.add(timeSchedule);
         }
 
         Map<String, Object> response = new HashMap<>();

@@ -37,7 +37,26 @@ INSERT INTO task (task_name, status, due_date, user_id) VALUES
 ('部署到測試環境', 3, '2025-06-22', 3),
 ('準備專案發表', 0, '2025-07-10', 1);
 
-
-
 ALTER TABLE user ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'STUDENT';
+
+CREATE TABLE time_schedule (
+                               id INT AUTO_INCREMENT PRIMARY KEY COMMENT '主鍵 ID',
+                               user_id INT NOT NULL COMMENT '使用者 ID',
+                               start_time DATETIME NOT NULL COMMENT '開始時間',
+                               end_time DATETIME NOT NULL COMMENT '結束時間',
+                               monday VARCHAR(500)  COMMENT '星期一的行程資訊',
+                               tuesday VARCHAR(500)  COMMENT '星期二的行程資訊',
+                               wednesday VARCHAR(500)  COMMENT '星期三的行程資訊',
+                               thursday VARCHAR(500)  COMMENT '星期四的行程資訊',
+                               friday VARCHAR(500)  COMMENT '星期五的行程資訊',
+                               saturday VARCHAR(500)  COMMENT '星期六的行程資訊',
+                               sunday VARCHAR(500)  COMMENT '星期日的行程資訊',
+                               status CHAR(1) NOT NULL DEFAULT '0' COMMENT '狀態：0=未完成, 1=已完成'
+) COMMENT='時間行程表';
+
+ALTER TABLE time_schedule
+    MODIFY COLUMN start_time TIME,
+    MODIFY COLUMN end_time TIME;
+
+
 
